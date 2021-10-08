@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="text-center">
+        <h3>Articles</h3>
+        <form method="POST" action="{% url 'scrape' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Get my UPL news</button>
+        </form>
+    </div>
+    <div class="row">
+        {% for object in object_list %}
+            <div class="col-md-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{ object.image }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><a target="_blank" href="{{ object.url }}"> {{ object.title }}</a></h5>
+                        <p class="card-text">...</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</body>
